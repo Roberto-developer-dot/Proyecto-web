@@ -3,30 +3,92 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Página de inicio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Sistema de Eventos</title>
+    <style>
+        /* Estilo general de la página */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 50px 80px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Título */
+        h1 {
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            color: #ffd700;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            margin: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Botón Admin */
+        .btn-admin {
+            background: #ff4b2b;
+        }
+
+        .btn-admin:hover {
+            background: #ff416c;
+            transform: scale(1.05);
+        }
+
+        /* Botón Buscar Eventos */
+        .btn-eventos {
+            background: #1dd1a1;
+        }
+
+        .btn-eventos:hover {
+            background: #10ac84;
+            transform: scale(1.05);
+        }
+
+        /* Efecto decorativo */
+        .container::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
+            z-index: 0;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a mi aplicación Django</h1>
-    </header>
+    <div class="container">
+        <h1>Bienvenido al Sistema de Eventos</h1>
+        <a href="{% url 'admin:index' %}" class="btn btn-admin">Administrador</a>
 
-    <nav>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Eventos</a></li>
-            <li><a href="#">Contacto</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section>
-            <h2>Sección principal</h2>
-            <p>Este es el panel de inicio de tu proyecto. Desde aquí podrás navegar a las diferentes secciones.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2025 Mi Proyecto Django</p>
-    </footer>
+        <a href="{% url 'buscar_eventos' %}" class="btn btn-eventos">Buscar Eventos</a>
+    </div>
 </body>
 </html>
