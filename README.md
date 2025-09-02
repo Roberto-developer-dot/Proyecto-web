@@ -18,3 +18,4 @@ Esto prepara la base de datos local.
 🔹 5. Levantar el servidor
 python manage.py runserver
 Ahora abre tu navegador en 👉 http://127.0.0.1:8000/ y verás el proyecto corriendo. 🚀
+
