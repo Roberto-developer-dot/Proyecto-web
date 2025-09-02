@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar eventos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        form { margin-bottom: 20px; }
+        label { margin-right: 10px; }
+        input, button { padding: 5px; margin: 5px; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 5px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Buscar eventos</h1>
+
+    <form method="get">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ nombre }}">
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" value="{{ fecha }}">
+
+        <label for="lugar">Lugar:</label>
+        <input type="text" id="lugar" name="lugar" value="{{ lugar }}">
+
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Resultados</h2>
+    <ul>
+        {% for evento in eventos %}
+            <li>
+              <p><strong>Nombre:</strong> {{ evento.nombre }}</p>
+            <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
+            <p><strong>Capacidad de personas:</strong> {{ evento.capacidad }}</p>
+            <p><strong>Lugar:</strong> 📍 {{ evento.lugar }}</p>
+            <p><strong>Artistas:</strong> {{ evento.artistas }}</p>
+            <p><strong>Número de boletas:</strong> {{ evento.n_boletas }}</p>
+            <p><strong>Costo:</strong> {{ evento.mostrar_costo }}</p>
+            <p><strong>Fecha:</strong> 📅 {{ evento.fecha }}</p>
+            <p><strong>Hora:</strong> ⏰ {{ evento.hora }}</p>
+            <p><strong>Publicidad:</strong> {{ evento.publicidad }}</p>
+            <p><strong>Vestimenta:</strong> {{ evento.vestimenta }}</p>
+            
+            {% if evento.flyer %}
+                <img src="{{ evento.flyer.url }}" alt="Flyer de {{ evento.nombre }}" width="200">
+            {% else %}
+                <span>📌 No hay flyer disponible</span>
+            {% endif %}
+            </li>
+        {% empty %}
+            <li>No se encontraron eventos con esos criterios.</li>
+        {% endfor %}
+        
+    </ul>
+
+    <button onclick="window.history.back()">⬅ Atrás</button>
+</body>
+</html>
+

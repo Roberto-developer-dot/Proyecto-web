@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Evento(models.Model):
     nombre = models.CharField(max_length=80)
@@ -8,12 +9,18 @@ class Evento(models.Model):
     lugar = models.CharField(max_length=130)
     artistas = models.CharField(max_length=100)
     n_boletas = models.IntegerField()
-    costo = models.BooleanField(default=False)
+    costo = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     fecha = models.DateField()
     hora = models.TimeField()
     publicidad = models.CharField(max_length=50)
     vestimenta = models.CharField( max_length=50)
     flyer = models.ImageField(upload_to="flyers/", blank=True, null=True)
+    
+    def mostrar_costo(self):
+        if not self.costo or self.costo == 0:
+            return "Gratis"
+        return f"${self.costo:,.0f}"
+    mostrar_costo.short_description = "Costo"
     
     def __str__(self):
         return self.nombre
