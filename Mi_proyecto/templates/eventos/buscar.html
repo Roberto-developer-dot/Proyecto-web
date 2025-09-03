@@ -1,179 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Buscar Eventos{% endblock %}
+{% block body_class %}bg-buscar{% endblock %}
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Buscar eventos</title>
-    <style>
-        /* Fondo y tipografía */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 50px;
-            color: #fff;
-        }
+{% block content %}
+  <section class="card">
+    <h2 class="h2 center">Buscar Eventos</h2>
 
-        /* Contenedor principal */
-        .container {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 40px 60px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 900px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-        }
+    <form method="get" action="." class="form">
+      <div>
+        <label class="label">Nombre del evento:</label>
+        <input class="input" type="text" name="q" placeholder="Nombre del evento">
+      </div>
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.2em;
-            color: #ffd700;
-        }
+      <div>
+        <label class="label">Fecha:</label>
+        <input class="date" type="date" name="fecha">
+      </div>
 
-        /* Formulario */
-        form {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
+      <div>
+        <label class="label">Lugar:</label>
+        <input class="input" type="text" name="lugar" placeholder="Ciudad o lugar">
+      </div>
 
-        label {
-            flex: 1 0 100%;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input, button {
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: none;
-            font-size: 1em;
-        }
-
-        input[type="text"], input[type="date"] {
-            width: 48%;
-        }
-
-        button {
-            width: 100%;
-            background: #1dd1a1;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background: #10ac84;
-        }
-
-        /* Resultados */
-        .resultados {
-            margin-top: 20px;
-        }
-
-        .evento {
-            background-color: rgba(255,255,255,0.1);
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 15px;
-            transition: transform 0.2s;
-        }
-
-        .evento:hover {
-            transform: scale(1.02);
-            background-color: rgba(255,255,255,0.15);
-        }
-
-        .evento img {
-            display: block;
-            margin-top: 10px;
-            max-width: 200px;
-            border-radius: 10px;
-        }
-
-        .no-resultados {
-            text-align: center;
-            font-style: italic;
-            margin-top: 20px;
-        }
-
-        .back-btn {
-            margin-top: 20px;
-            padding: 12px 20px;
-            background-color: #ff4b2b;
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            background-color: #ff416c;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Buscar Eventos</h1>
-
-        <!-- Formulario de búsqueda -->
-        <form method="get">
-            <label for="nombre">Nombre del evento:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre del evento" value="{{ nombre }}">
-
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" value="{{ fecha }}">
-
-            <label for="lugar">Lugar:</label>
-            <input type="text" id="lugar" name="lugar" placeholder="Ciudad o lugar" value="{{ lugar }}">
-
-            <button type="submit">Buscar</button>
-        </form>
-
-        <!-- Resultados solo si hay búsqueda -->
-        {% if eventos %}
-        <div class="resultados">
-            {% for evento in eventos %}
-            <div class="evento">
-                <p><strong>Nombre:</strong> {{ evento.nombre }}</p>
-                <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
-                <p><strong>Capacidad:</strong> {{ evento.capacidad }}</p>
-                <p><strong>Lugar:</strong> 📍 {{ evento.lugar }}</p>
-                <p><strong>Artistas:</strong> {{ evento.artistas }}</p>
-                <p><strong>Número de boletas:</strong> {{ evento.n_boletas }}</p>
-                <p><strong>Costo:</strong> {{ evento.mostrar_costo }}</p>
-                <p><strong>Fecha:</strong> 📅 {{ evento.fecha }}</p>
-                <p><strong>Hora:</strong> ⏰ {{ evento.hora }}</p>
-                <p><strong>Publicidad:</strong> {{ evento.publicidad }}</p>
-                <p><strong>Vestimenta:</strong> {{ evento.vestimenta }}</p>
-
-                {% if evento.flyer %}
-                    <img src="{{ evento.flyer.url }}" alt="Flyer de {{ evento.nombre }}">
-                {% else %}
-                    <span>📌 No hay flyer disponible</span>
-                {% endif %}
-            </div>
-            {% endfor %}
-        </div>
-        {% elif request.GET %}
-        <div class="no-resultados">
-            No se encontraron eventos con esos criterios.
-        </div>
-        {% endif %}
-
-        <button class="back-btn" onclick="window.history.back()">⬅ Volver</button>
-    </div>
-</body>
-</html>
+      <div class="actions">
+        <button class="btn btn-secundario" type="submit">Buscar</button>
+        <a class="btn btn-primario" href="{% url 'inicio' %}">← Volver</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

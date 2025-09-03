@@ -1,0 +1,150 @@
+/* --------- Variables y reset --------- */
+:root{
+  --amarillo: #E1AD01;   /* mostaza */
+  --naranja:  #FF6B35;   /* naranja vivo */
+  --blanco:   #FFFFFF;
+  --azul-900: #0B1220;   /* fondo oscuro para tarjetas */
+  --azul-800: #121A2A;
+  --sombra:   rgba(0,0,0,.25);
+  --radio:    22px;
+}
+
+*{ box-sizing: border-box; }
+html, body{
+  height: 100%;
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--blanco);
+}
+
+/* --------- Fondos por página --------- */
+.bg-inicio{
+  /* Imagen de inicio + degradado para legibilidad */
+  background: linear-gradient(to bottom, rgba(11,18,32,.6), rgba(11,18,32,.8)),
+              url("/static/images/bg-inicio.jpg") center/cover no-repeat fixed;
+}
+
+.bg-buscar{
+  background: linear-gradient(to bottom, rgba(11,18,32,.65), rgba(11,18,32,.85)),
+              url("/static/images/bg-buscar.jpg") center/cover no-repeat fixed;
+}
+
+/* --------- Contenedor --------- */
+.container{
+  min-height: calc(100vh - 80px);
+  display: grid;
+  place-items: center;
+  padding: 40px 16px;
+}
+
+/* --------- Tarjeta principal --------- */
+.card{
+  width: min(960px, 96vw);
+  background: linear-gradient(180deg, var(--azul-900), var(--azul-800));
+  border-radius: var(--radio);
+  padding: 48px 36px;
+  box-shadow: 0 24px 60px var(--sombra);
+}
+
+/* --------- Títulos --------- */
+.h1{
+  font-size: clamp(32px, 5.5vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+  color: var(--amarillo);
+  margin: 0 0 28px;
+}
+
+.h2{
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 700;
+  color: var(--amarillo);
+  margin: 8px 0 20px;
+}
+
+/* --------- Botones --------- */
+.btn-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.btn{
+  appearance: none;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 22px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--blanco);
+  cursor: pointer;
+  transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
+  box-shadow: 0 10px 24px var(--sombra);
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn:active{ transform: translateY(1px); }
+
+.btn-primario{
+  background: var(--naranja);
+}
+
+.btn-secundario{
+  background: #11c5a3; /* contraste con naranja, puedes ajustarlo */
+}
+
+.btn:hover{ filter: brightness(1.05); }
+
+/* --------- Formularios --------- */
+.form{
+  display: grid;
+  gap: 16px;
+}
+
+.label{
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--blanco);
+}
+
+.input, .select, .date{
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  background: rgba(255,255,255,.08);
+  color: var(--blanco);
+  outline: none;
+  transition: border-color .2s ease, background .2s ease;
+}
+
+.input::placeholder{ color: rgba(255,255,255,.65); }
+
+.input:focus, .select:focus, .date:focus{
+  border-color: var(--amarillo);
+  background: rgba(255,255,255,.12);
+}
+
+.actions{
+  margin-top: 10px;
+  display: grid;
+  gap: 14px;
+}
+
+/* --------- Footer --------- */
+.footer{
+  height: 80px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  color: rgba(255,255,255,.8);
+}
+
+/* --------- Utilidades --------- */
+.center{text-align:center;}
+.mt-24{margin-top:24px;}
+.mt-32{margin-top:32px;}
