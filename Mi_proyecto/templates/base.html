@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Sistema de Eventos{% endblock %}</title>
 
+  <!-- 🔹 Aquí va el icono -->
+  <link rel="icon" href="{% static 'images/mi_icono.png' %}" type="image/png">
+
   <!-- Fuente bonita y legible -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,12 +18,32 @@
 </head>
 <body class="{% block body_class %}{% endblock %}">
 
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      <h2 class="logo">Sistema de Eventos</h2>
+      <nav>
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="{% url 'buscar_eventos' %}">Buscar</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
   <main class="container">
     {% block content %}{% endblock %}
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
-    <p>© {{ now|date:"Y" }} Sistema de Eventos</p>
+    <p>© {% now "Y" %} Sistema de Eventos · Todos los derechos reservados</p>
+    <div class="social">
+      <a href="#"><img src="{% static 'imagenes/facebook.svg' %}" alt="Facebook"></a>
+      <a href="#"><img src="{% static 'imagenes/twitter.svg' %}" alt="Twitter"></a>
+      <a href="#"><img src="{% static 'imagenes/instagram.svg' %}" alt="Instagram"></a>
+    </div>
   </footer>
 </body>
 </html>
+
