@@ -6,20 +6,21 @@
   <section class="card">
     <h2 class="h2 center">Buscar Eventos</h2>
 
+    <!-- Formulario -->
     <form method="get" action="." class="form">
       <div>
         <label class="label">Nombre del evento:</label>
-        <input class="input" type="text" name="q" placeholder="Nombre del evento">
+        <input class="input" type="text" name="nombre" placeholder="Nombre del evento" value="{{ nombre }}">
       </div>
 
       <div>
         <label class="label">Fecha:</label>
-        <input class="date" type="date" name="fecha">
+        <input class="date" type="date" name="fecha" value="{{ fecha }}">
       </div>
 
       <div>
         <label class="label">Lugar:</label>
-        <input class="input" type="text" name="lugar" placeholder="Ciudad o lugar">
+        <input class="input" type="text" name="lugar" placeholder="Ciudad o lugar" value="{{ lugar }}">
       </div>
 
       <div class="actions">
@@ -27,5 +28,50 @@
         <a class="btn btn-primario" href="{% url 'inicio' %}">← Volver</a>
       </div>
     </form>
+
+    <!-- Resultados -->
+    {% if eventos %}
+      <section class="resultados mt-32">
+        <h3 class="h2 center">Resultados de la búsqueda</h3>
+
+        <div class="resultados">
+          {% for evento in eventos %}
+            <div class="evento-card">
+              <!-- Flyer arriba -->
+              {% if evento.flyer %}
+                <div class="evento-flyer">
+                  <img src="{{ evento.flyer.url }}" alt="Flyer de {{ evento.nombre }}">
+                </div>
+              {% endif %}
+
+              <!-- Información principal -->
+              <div class="evento-info">
+                <h2 class="evento-nombre">{{ evento.nombre }}</h2>
+                <p class="evento-meta">
+                  <span>📅 {{ evento.fecha }} {{ evento.hora }}</span><br>
+                  <span>📍 {{ evento.lugar }}</span><br>
+                  <span>👥 Aforo: {{ evento.capacidad }}</span>
+                </p>
+
+                {% if evento.vestimenta %}
+                  <p><span class="badge">Vestimenta sugerida: {{ evento.vestimenta }}</span></p>
+                {% endif %}
+
+                <p class="evento-desc">{{ evento.descripcion }}</p>
+
+                <div class="evento-extra">
+                  <p><strong>Artistas:</strong> {{ evento.artistas }}</p>
+                  <p><strong>Publicidad:</strong> {{ evento.publicidad }}</p>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <p class="no-resultados">No se encontraron eventos con esos criterios.</p>
+          {% endfor %}
+        </div>
+      </section>
+    {% else %}
+      <p class="no-resultados mt-24 center">No se encontraron eventos.</p>
+    {% endif %}
   </section>
 {% endblock %}

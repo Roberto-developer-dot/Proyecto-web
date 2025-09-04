@@ -215,3 +215,69 @@ html, body{
 .center{text-align:center;}
 .mt-24{margin-top:24px;}
 .mt-32{margin-top:32px;}
+
+/* --------- Resultados de búsqueda --------- */
+.resultados {
+  display: grid;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.evento-card {
+  display: flex;
+  flex-direction: row;  /* flyer a la izquierda y texto a la derecha */
+  gap: 24px;
+  align-items: flex-start;
+  background: var(--azul-900);
+  border-radius: var(--radio);
+  box-shadow: 0 10px 30px var(--sombra);
+  padding: 24px;
+  overflow: hidden;
+}
+
+/* Flyer completo y proporcionado */
+.evento-flyer img {
+  width: 280px;          /* controla ancho fijo */
+  height: auto;          /* mantiene proporción */
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Texto grande y balanceado */
+.evento-info {
+  flex: 1;               /* ocupa todo el espacio restante */
+  text-align: left;
+}
+
+.evento-nombre {
+  font-size: 40px;       /* bien grande */
+  font-weight: 900;
+  color: var(--amarillo);
+  margin-bottom: 16px;
+}
+
+.evento-meta {
+  font-size: 20px;
+  margin-bottom: 18px;
+  line-height: 1.7;
+}
+
+.badge {
+  font-size: 19px;
+  font-weight: 700;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.evento-desc {
+  font-size: 20px;
+  margin-bottom: 18px;
+  line-height: 1.8;
+}
+
+.evento-extra p {
+  font-size: 19px;
+  margin: 6px 0;
+}
