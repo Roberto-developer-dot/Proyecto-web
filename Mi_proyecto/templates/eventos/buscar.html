@@ -36,33 +36,38 @@
 
         <div class="resultados">
           {% for evento in eventos %}
-            <div class="evento-card">
-              <!-- Flyer arriba -->
+            <div class="evento-container">
+              
+              <!-- Flyer principal -->
               {% if evento.flyer %}
-                <div class="evento-flyer">
-                  <img src="{{ evento.flyer.url }}" alt="Flyer de {{ evento.nombre }}">
-                </div>
+              <div class="evento-flyer">
+                <img src="{{ evento.flyer.url }}" alt="Flyer de {{ evento.nombre }}">
+              </div>
               {% endif %}
 
-              <!-- Información principal -->
+              <!-- Información -->
               <div class="evento-info">
-                <h2 class="evento-nombre">{{ evento.nombre }}</h2>
-                <p class="evento-meta">
-                  <span>📅 {{ evento.fecha }} {{ evento.hora }}</span><br>
-                  <span>📍 {{ evento.lugar }}</span><br>
-                  <span>👥 Aforo: {{ evento.capacidad }}</span>
-                </p>
+                <h2>{{ evento.nombre }}</h2>
+                <p>📅 {{ evento.fecha }} {{ evento.hora }}</p>
+                <p>📍 {{ evento.lugar }}</p>
+                <p>👥 Aforo: {{ evento.capacidad }}</p>
 
                 {% if evento.vestimenta %}
-                  <p><span class="badge">Vestimenta sugerida: {{ evento.vestimenta }}</span></p>
+                  <p><strong>Vestimenta sugerida:</strong> {{ evento.vestimenta }}</p>
                 {% endif %}
 
-                <p class="evento-desc">{{ evento.descripcion }}</p>
+                <p>{{ evento.descripcion }}</p>
+                <p><strong>Artistas:</strong> {{ evento.artistas }}</p>
 
-                <div class="evento-extra">
-                  <p><strong>Artistas:</strong> {{ evento.artistas }}</p>
-                  <p><strong>Publicidad:</strong> {{ evento.publicidad }}</p>
-                </div>
+
+                {% if evento.flyer_patrocinadores %}
+                  <div style="margin-top:20px;">
+                    <h4>Patrocinadores</h4>
+                    <img src="{{ evento.flyer_patrocinadores.url }}" 
+                         alt="Flyer de patrocinadores" 
+                         style="max-width:250px; border-radius:8px;">
+                  </div>
+                {% endif %}
               </div>
             </div>
           {% empty %}

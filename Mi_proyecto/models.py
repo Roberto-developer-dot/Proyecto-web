@@ -12,9 +12,10 @@ class Evento(models.Model):
     costo = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     fecha = models.DateField()
     hora = models.TimeField()
-    publicidad = models.CharField(max_length=50)
+   
     vestimenta = models.CharField( max_length=50)
     flyer = models.ImageField(upload_to="flyers/", blank=True, null=True)
+    flyer_patrocinadores = models.ImageField(upload_to="patrocinadores/", null=True, blank=True)  # 👈 nuevo
     
     def mostrar_costo(self):
         if not self.costo or self.costo == 0:

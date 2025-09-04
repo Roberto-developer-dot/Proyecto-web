@@ -223,35 +223,46 @@ html, body{
   margin-top: 32px;
 }
 
-.evento-card {
+/* Contenedor general del evento */
+.evento-card, 
+.evento-container {   /* puedes usar ambos según tu template */
   display: flex;
   flex-direction: row;  /* flyer a la izquierda y texto a la derecha */
-  gap: 24px;
-  align-items: flex-start;
+  align-items: center;  /* centra verticalmente */
+  justify-content: center; /* centra todo horizontalmente */
+  gap: 30px;            /* Espacio entre flyer e info */
+  margin: 40px auto;
+  max-width: 1000px;
+  padding: 24px;
   background: var(--azul-900);
   border-radius: var(--radio);
   box-shadow: 0 10px 30px var(--sombra);
-  padding: 24px;
   overflow: hidden;
 }
 
-/* Flyer completo y proporcionado */
+/* Flyer con estilo */
 .evento-flyer img {
-  width: 280px;          /* controla ancho fijo */
+  width: 320px;          /* controla ancho fijo */
+  max-width: 100%;       /* responsive */
   height: auto;          /* mantiene proporción */
   border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   object-fit: cover;
   display: block;
 }
 
-/* Texto grande y balanceado */
+/* Información del evento */
 .evento-info {
-  flex: 1;               /* ocupa todo el espacio restante */
+  flex: 1;
   text-align: left;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--blanco);
 }
 
+.evento-info h2,
 .evento-nombre {
-  font-size: 40px;       /* bien grande */
+  font-size: 2rem;
   font-weight: 900;
   color: var(--amarillo);
   margin-bottom: 16px;
@@ -261,14 +272,6 @@ html, body{
   font-size: 20px;
   margin-bottom: 18px;
   line-height: 1.7;
-}
-
-.badge {
-  font-size: 19px;
-  font-weight: 700;
-  padding: 10px 16px;
-  margin-bottom: 16px;
-  display: inline-block;
 }
 
 .evento-desc {
