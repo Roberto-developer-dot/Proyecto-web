@@ -1,0 +1,38 @@
+[
+{
+  "model": "Mi_proyecto.evento",
+  "pk": 2,
+  "fields": {
+    "nombre": "Concierto de leyendas",
+    "descripcion": "Una experiencia musical única que reunirá en un mismo escenario a tres agrupaciones que han marcado generaciones y estilos distintos. Queen, con su legado inigualable en la historia del rock; Metallica, emblema del metal que transformó la escena musical mundial; y Menudo, fenómeno juvenil que dejó una huella imborrable en la cultura pop latina. Este encuentro promete ser un homenaje a la diversidad musical y a la trascendencia de artistas que se han convertido en verdaderas leyendas.",
+    "capacidad": 60000,
+    "lugar": "Turbaco",
+    "artistas": "Queen, Metallica y Menudo",
+    "n_boletas": 60000,
+    "costo": "85000.00",
+    "fecha": "2025-11-15",
+    "hora": "15:30:00",
+    "vestimenta": "Casual con estilo, Rock/Metal y Retro/Pop",
+    "flyer": "flyers/WhatsApp_Image_2025-09-03_at_20_BiQkdpw.18.05.jpeg",
+    "flyer_patrocinadores": "patrocinadores/WhatsApp_Image_2025-09-03_at_22.20.19_1.jpeg"
+  }
+},
+{
+  "model": "Mi_proyecto.evento",
+  "pk": 3,
+  "fields": {
+    "nombre": "Gran bando",
+    "descripcion": "El Gran Bando es el evento que da inicio a la gran celebración de la fiesta popular más esperada del año. Un desfile lleno de color, música y tradición que recorre la Avenida Santander, reuniendo comparsas, bailarines y agrupaciones que exaltan la cultura y la alegría de nuestra gente.\r\n\r\nCon su vibrante energía y espíritu festivo, el Gran Bando se consolida como un espacio de encuentro donde la tradición se vive en cada paso y la ciudad se llena de ritmo, sabor y folclor.",
+    "capacidad": 0,
+    "lugar": "Avenida santander",
+    "artistas": "El artista eres tu",
+    "n_boletas": 0,
+    "costo": null,
+    "fecha": "2025-11-11",
+    "hora": "11:00:00",
+    "vestimenta": "Folclorica",
+    "flyer": "flyers/WhatsApp_Image_2025-09-03_at_20.18.06.jpeg",
+    "flyer_patrocinadores": "patrocinadores/WhatsApp_Image_2025-09-03_at_22_8eKBEvy.20.19.jpeg"
+  }
+}
+]
