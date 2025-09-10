@@ -30,53 +30,54 @@
     </form>
 
     <!-- Resultados -->
-    {% if eventos %}
+    {% if buscado %}
       <section class="resultados mt-32">
         <h3 class="h2 center">Resultados de la búsqueda</h3>
 
-        <div class="resultados">
-          {% for evento in eventos %}
-            <div class="evento-container">
-              
-              <!-- Flyer principal -->
-              {% if evento.flyer %}
-              <div class="evento-flyer">
-                <img src="{{ evento.flyer.url }}" alt="Flyer de {{ evento.nombre }}">
-              </div>
-              {% endif %}
-
-              <!-- Información -->
-              <div class="evento-info">
-                <h2>{{ evento.nombre }}</h2>
-                <p>📅 {{ evento.fecha }} {{ evento.hora }}</p>
-                <p>📍 {{ evento.lugar }}</p>
-                <p>👥 Aforo: {{ evento.capacidad }}</p>
-
-                {% if evento.vestimenta %}
-                  <p><strong>Vestimenta sugerida:</strong> {{ evento.vestimenta }}</p>
+        {% if eventos %}
+          <div class="resultados">
+            {% for evento in eventos %}
+              <div class="evento-container">
+                
+                <!-- Flyer principal -->
+                {% if evento.flyer %}
+                <div class="evento-flyer">
+                  <img src="{{ evento.flyer.url }}" alt="Flyer de {{ evento.nombre }}">
+                </div>
                 {% endif %}
 
-                <p>{{ evento.descripcion }}</p>
-                <p><strong>Artistas:</strong> {{ evento.artistas }}</p>
+                <!-- Información -->
+                <div class="evento-info">
+                  <h2>{{ evento.nombre }}</h2>
+                  <p>📅 {{ evento.fecha }} {{ evento.hora }}</p>
+                  <p>📍 {{ evento.lugar }}</p>
+                  <p>👥 Aforo: {{ evento.capacidad }}</p>
 
+                  {% if evento.vestimenta %}
+                    <p><strong>Vestimenta sugerida:</strong> {{ evento.vestimenta }}</p>
+                  {% endif %}
 
-                {% if evento.flyer_patrocinadores %}
-                  <div style="margin-top:20px;">
-                    <h4>Patrocinadores</h4>
-                    <img src="{{ evento.flyer_patrocinadores.url }}" 
-                         alt="Flyer de patrocinadores" 
-                         style="max-width:250px; border-radius:8px;">
-                  </div>
-                {% endif %}
+                  <p>{{ evento.descripcion }}</p>
+                  <p><strong>Artistas:</strong> {{ evento.artistas }}</p>
+
+                  {% if evento.flyer_patrocinadores %}
+                    <div style="margin-top:20px;">
+                      <h4>Patrocinadores</h4>
+                      <img src="{{ evento.flyer_patrocinadores.url }}" 
+                          alt="Flyer de patrocinadores" 
+                          style="max-width:250px; border-radius:8px;">
+                    </div>
+                  {% endif %}
+                </div>
               </div>
-            </div>
-          {% empty %}
-            <p class="no-resultados">No se encontraron eventos con esos criterios.</p>
-          {% endfor %}
-        </div>
+            {% empty %}
+              <p class="no-resultados">No se encontraron eventos con esos criterios.</p>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="no-resultados mt-24 center">No se encontraron eventos con esos criterios.</p>
+        {% endif %}
       </section>
-    {% else %}
-      <p class="no-resultados mt-24 center">No se encontraron eventos.</p>
     {% endif %}
   </section>
 {% endblock %}

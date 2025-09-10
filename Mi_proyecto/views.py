@@ -6,25 +6,37 @@ from .models import Evento
 
 
     
+from django.shortcuts import render
+from .models import Evento
+
 def buscar_eventos(request):
     query_nombre = request.GET.get("nombre", "")
     query_fecha = request.GET.get("fecha", "")
     query_lugar = request.GET.get("lugar", "")
 
-    eventos = Evento.objects.all()
+    eventos = None
+    buscado = False
 
-    if query_nombre:
-        eventos = eventos.filter(nombre__icontains=query_nombre)
-    if query_fecha:
-        eventos = eventos.filter(fecha=query_fecha)
-    if query_lugar:
-        eventos = eventos.filter(lugar__icontains=query_lugar)
+    # Solo buscamos si el usuario ingresó algún criterio
+    if query_nombre or query_fecha or query_lugar:
+        buscado = True
+        eventos = Evento.objects.all()
+
+        if query_nombre:
+            eventos = eventos.filter(nombre__icontains=query_nombre)
+        if query_fecha:
+            eventos = eventos.filter(fecha=query_fecha)
+        if query_lugar:
+            eventos = eventos.filter(lugar__icontains=query_lugar)
 
     return render(request, "eventos/buscar.html", {
         "eventos": eventos,
+        "buscado": buscado,
         "nombre": query_nombre,
         "fecha": query_fecha,
         "lugar": query_lugar,
     })
+
+
 def inicio(request):
     return render(request, "inicio.html")
